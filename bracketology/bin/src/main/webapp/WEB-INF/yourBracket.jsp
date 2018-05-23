@@ -9,7 +9,6 @@
 </head>
 <body>
     <h1>2018 FIFA WORLD CUP</h1>
-    <h2>Russia</h2>
     <div class="tournament"></div>
     <script type="text/javascript" src="jquery-1.6.2.min.js"></script>
     <script type="text/javascript" src="jquery.bracket.min.js"></script>
