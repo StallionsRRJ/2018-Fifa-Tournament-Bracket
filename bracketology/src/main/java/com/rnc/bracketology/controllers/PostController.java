@@ -36,7 +36,7 @@ public class PostController {
 	public String wall(@ModelAttribute("newPost") Post post,Model model,Principal principal,@ModelAttribute("newComment") Comment comment) {
 		User user = _uS.findByUsername(principal.getName());
 		user.setPassword(null);
-		model.addAttribute("currentUse", user);
+		model.addAttribute("currentUser", user);
 		model.addAttribute("posts", _pS.all());
 		return "wall";
 	}

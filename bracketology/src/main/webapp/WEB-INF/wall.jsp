@@ -36,7 +36,7 @@
 
 </head>
 <body>
-   <nav class="navbar navbar-expand-sm bg-dark  navbar-dark ">
+    <nav class="navbar navbar-expand-sm bg-dark  navbar-dark ">
         <div class="container">
             <a href="index.html" class="navbar-brand">Fifa Wall</a>
             <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -82,8 +82,8 @@
 	                    <div id="collapse1" class="collapse">
 	                        <div class="card-body">
 	                            <div class="form-group">
-                                     <form:textarea path="message" class="form-control" rows="4" placeholder="Write something here"></form:textarea>
-                                 </div>
+                                    <form:textarea path="message" class="form-control" rows="4" placeholder="Write something here"></form:textarea>
+                                </div>
                             </div>
                         </div>
                         <div class="card">
@@ -96,22 +96,81 @@
                             <div class="d-flex row-hl ">
                                 <div>
                                     <label for="files" class="btn item-hl ml-3 mb-3 btn-info"> <i class="fa fa-camera"></i> Image </label> 
-
                                 </div>
                                 <input type="submit" class="btn ml-auto mr-3 mb-3 item-hl btn-secondary " value="Post" />
                             </div>
-                      	</div>
+                        </div>
                     </form:form>
-
                 </div>
+            
+                <c:forEach items="${posts}" var="post">
+                    <div class="card mb-2 text-top" >
+                        <div class="d-flex row-hl">
+                            <!-- <img id="smallUserImgHome" src="/images/${post.getUser()}" alt="${currentUser}" class="img-fluid item-hl mt-1 rounded-circle mt-2 ml-2">                         -->
+                            <div class="item-hl ml-2 mt-1">
+                                <c:if test="${post.getUser().getId() == cUser.id}">
+                                    <p id="postSmallText"><a class="text-dark" href="/user/${post.getUser().getId()}"> ${post.getUser().getFirst_Name()} </a> </p>
+                                    <p id="postSmallname"> <small> <a class="text-secondary" href="/user/${post.getUser().getId()}"> ${post.getUser().getLast_name()}</a> </small> </p>                                </c:if>
+                                <c:if test="${post.getUser().getId() != currentUser.id}">
+                                    <p id="postSmallText"><a class="text-dark" href="/profile/${post.getUser().getId()}"> ${post.getUser().getFirst_Name()} </a> </p>
+                                    <p id="postSmallname"> <small> <a class="text-secondary" href="/profile/${post.getUser().getId()}"> ${post.getUser().getLast_name}</a> </small> </p>
+                                </c:if>
+                                <p > <small class="text-secondary">${pTime.format(post.getCreatedAt())}  </small> </p>
+                            </div>
+                            
+                        </div>
+                        <p class="card-text mr-3 ml-3 mb-3">${post.getMessage()}</p>
+                        <c:if test="${post.getPicture() != null}">
+                            <img class="card-img-bottom card-img-top img-fluid" src="/images/${post.getPicture()}" alt="${post.getPicture()}">
+                        </c:if>
+                        <small class="text-muted ml-2"> 5 Like * <a href="#collapseComments${post.getId()}" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" class="text-muted">${post.getComments().size()} Comment </a></small>
+                        <!-- comments list -->
+                        <div id="collapseComments${post.getId()}" class="collapse">
+                            <c:forEach items="${post.comments}" var="comment">
+                                <div class="d-flex row-hl ml-2">
+                                    <!-- <img id="userImgComment" src="/images/${comment.getUser().getUserInfo().getProfileImg()}" alt="${cUser.getUserInfo().getProfileImg()}" class="img-fluid item-hl mt-1 rounded-circle mt-2 ml-2"> -->
+                                    <div class="item-hl ml-2 mt-1">
+                                        <small class="mr-2"> <a class="text-dark" href="/profile/${comment.getUser().getId()}"> <strong>${comment.getUser().getUserInfo().getFirstName()}</strong> </a> </small><br>
+                                        <small> <a class="text-muted" href="/profile/${comment.getUser().getId()}"> ${comment.getUser().getLast_name()} </a></small>
+                                    </div>
+                                    
+                                </div>
+                                <div class="ml-5">
+                                    <small>${comment.comment}</small>
+                                </div>  
+                            </c:forEach>
+                        </div>
+                        <!--  -->
+                        <div class="card-footer text-muted">
+                            <small class="mr-2"><a href="#" class="text-secondary" ><i class="fa fa-thumbs-o-up"></i> like </a></small>
+                            <small class="mr-2"> <a href="#collapseCommentForm${post.getId()}" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" class="text-secondary"> <i class="fa fa-comment-o"></i> comment </a></small>
+                            <small><a href="#" class="text-secondary"> <i class="fa fa-share"></i> share </a></small>  
+                        </div>
+                        
+                        <div id="collapseCommentForm${post.getId()}" class="collapse">
+                            <!-- comment form -->
+                            <div class=" mr-2 ml-2">
+                                <form:form action="/home/addComment/${post.getId()}" method="post" enctype="multipart/form-data" modelAttribute="newComment">    
+                                    <form:input path="comment" type="text" id="name" class="form-control form-control-sm" placeholder="Add a comment..."></form:input>
+                                    <div class="d-flex flex-row justify-content-between row-hl mt-2 ">
+                                        <label for="fil" class="btn text-info"> <i class="fa fa-camera"></i> </label> 
+                                        <input id="fil" style="visibility:hidden;" name="file2" type="file">
+                                        <small><input id="smallCommentBtn" class="text-rigth btn btn-info" type="submit" value="Post"></small> 
+                                    </div>
+                                </form:form>
+                            </div>
+                        </div>
 
-                
+                    </div>
+                </c:forEach>
             </div>
+        
             <div class="col-sm-3 d-none d-sm-block">
                 <p>other stuff goes here</p>
             </div>
         </div>
     </div>
+
 		
 	<!-- jQuery -->
 
