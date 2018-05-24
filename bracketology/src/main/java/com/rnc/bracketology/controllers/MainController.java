@@ -29,7 +29,7 @@ public class MainController {
 	@PostMapping("bracketData")
 	public String getData(@RequestParam("teamsData") String teamsData,@RequestParam("resultsData") String resultsData) throws JsonParseException, JsonMappingException, IOException {
 //		Map<String, String> team = mydata;
-		
+		System.out.println(teamsData);
 		List<Object> teams = mapper.readValue(teamsData, new TypeReference<List<Object>>(){});
 		
 		List<Object> results = mapper.readValue(resultsData, new TypeReference<List<Object>>(){});

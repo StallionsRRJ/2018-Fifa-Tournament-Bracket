@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -53,6 +54,24 @@ public class User {
         joinColumns = @JoinColumn(name = "user_id"), 
         inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles;
+    
+//    post
+    @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+	private List<Post> posts;
+    
+//    comment 
+    @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+	private List<Comment> comments;
+    
+//    likes many to many with post
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+    name = "likes", 
+    joinColumns = @JoinColumn(name = "user_id"), 
+    inverseJoinColumns = @JoinColumn(name = "post_id")
+    )
+    private List<Post> postLikes;
+    
     
     public User() {
     }
@@ -123,7 +142,25 @@ public class User {
         this.roles = roles;
     }
     
-    @PrePersist
+    public List<Post> getPosts() {
+		return posts;
+	}
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
+	public List<Comment> getComments() {
+		return comments;
+	}
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+	public List<Post> getPostLikes() {
+		return postLikes;
+	}
+	public void setPostLikes(List<Post> postLikes) {
+		this.postLikes = postLikes;
+	}
+	@PrePersist
     protected void onCreate(){
         this.createdAt = new Date();
         this.updatedAt = new Date();

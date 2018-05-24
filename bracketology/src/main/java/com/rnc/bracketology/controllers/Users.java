@@ -88,6 +88,7 @@ public class Users {
     public String home(Principal principal, Model model) {
         // 1
         String username = principal.getName();
+        
 
         model.addAttribute("currentUser", userService.findByUsername(username));
         Date sign_in = userService.findByUsername(username).getLast_sign_in();
@@ -111,7 +112,7 @@ public class Users {
 	@RequestMapping("makebracket")
 	public String bracketmaker(Principal principal, Model model) {
         String username = principal.getName();
-
+        System.out.println(username);
         model.addAttribute("currentUser", userService.findByUsername(username));
         
         return "yourBracket";
