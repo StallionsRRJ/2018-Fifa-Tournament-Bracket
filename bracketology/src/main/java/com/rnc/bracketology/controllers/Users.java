@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -63,12 +64,14 @@ public class Users {
     @RequestMapping("/admin")
     public String adminPage(Principal principal, Model model) {
         String username = principal.getName();
+        User activeUser = (User) ((Authentication) principal).getPrincipal();
+        System.out.println(activeUser.getFirst_name()+"***********");
         model.addAttribute("currentUser", userService.findByUsername(username));
         return "adminPage";
     }
     
     @RequestMapping("/login")
-    public String login(@RequestParam(value="error", required=false) String error, @RequestParam(value="logout", required=false) String logout, Model model) {
+    public String login(@RequestParam(value="error", required=false)String error, @RequestParam(value="logout", required=false) String logout, Model model,Principal principal) {
     	if(error != null) {
             model.addAttribute("errorMessage", "Invalid Credentials, Please try again.");
         }
@@ -76,6 +79,7 @@ public class Users {
             model.addAttribute("logoutMessage", "Logout Successful!");
         }
         model.addAttribute("user", new User());
+        
         return "index";
     }
 	

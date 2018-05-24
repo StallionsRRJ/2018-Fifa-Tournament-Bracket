@@ -40,7 +40,7 @@ public class User {
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date dob;
     private Date last_sign_in;
-    @Size(min=6)
+    @Size(min=5)
     private String password;
     @Transient
     private String passwordConfirmation;

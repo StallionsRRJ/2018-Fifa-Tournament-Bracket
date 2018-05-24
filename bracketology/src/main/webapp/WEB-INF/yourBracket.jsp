@@ -14,8 +14,13 @@
 
     <h1>hello</h1>
     <div class="demo"></div>
-    <input type="text" id="fifa" value="text">
-    <button id="saveOutput">submit</button>
+    <form action="/Home/bracketData" method="POST">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        <input type="hidden" id="teams" name="teamsData" value="text">
+        <input type="hidden" id="results" name="resultsData" value="text">
+        <input type="submit" value="submit">  
+    </form>
+    
 
     
 <!--  -->
@@ -43,8 +48,9 @@
         };
         
         function saveFn(data, userData) {
-            console.log(JSON.stringify(data))
-            document.getElementById('fifa').value = JSON.stringify(data)
+            console.log(JSON.stringify(data.teams))
+            document.getElementById('teams').value = JSON.stringify(data.teams)
+            document.getElementById('results').value = JSON.stringify(data.results)
         }
 
         $(function () {
