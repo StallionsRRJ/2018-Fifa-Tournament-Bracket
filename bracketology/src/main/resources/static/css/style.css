@@ -23,6 +23,12 @@ body {
 body.fh5co-offcanvas {
   overflow: hidden;
 }
+/* *{
+	border: 1px solid black;
+} */
+.group-sub-box{
+  height: 260px;
+}
 
 a {
   color: #4CB648;

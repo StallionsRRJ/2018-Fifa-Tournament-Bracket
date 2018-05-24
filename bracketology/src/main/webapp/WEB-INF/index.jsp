@@ -44,6 +44,8 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+	<!-- draggin box -->
+	
 </head>
 <body>
 <div id="fh5co-wrapper">
@@ -88,10 +90,10 @@
 							<form method="POST" action="/login">
 								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 								<div class="form-group">
-									<input class="form-control" placeholder="Email" type="text" id="username" name="username">
+									<input class="form-control" placeholder="Email" type="text" name="username">
 								</div>
 								<div class="form-group">
-									<input class="form-control" type="password" placeholder="Password"  id="password" name="password">
+									<input class="form-control" type="password" placeholder="Password" name="password">
 								</div>
 								<p>Need to register?  <a class="text-dark" data-dismiss="modal" data-toggle="modal" data-target="#registerModal">Register</a> </p>
 								<div class="card-footer">
@@ -178,7 +180,7 @@
 						<div class="row">
 							<div class="col-md-7">
 								<h2>2018 FIFA WORLD CUP <b>RUSSIA</b></h2>
-								<p><span>14 JUNE - 15 JULY</a></span></p>
+								<p><span>14 JUNE - 15 JULY</span></p>
 								<span><a class="btn btn-primary" data-toggle="modal" data-target="#registerModal">Start Your Bracket</a></span>
 							</div>
 						</div>
@@ -187,31 +189,28 @@
 			</div>
 		</div>
 		<!-- end:fh5co-hero -->
-		<div id="fh5co-schedule-section" class="fh5co-lightgray-section">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2">
+		<div id="fh5co-schedule-section" class="fh5co-lightgray-section ">
+			<div class="container text-center">
+				<div class="text-center">
+					<!-- <div class="col-md-8 text-center col-md-offset-2"> -->
 						<div class="heading-section text-center animate-box">
 							<h2>Groups</h2>
 							<p>Something may go here</p>
 						</div>
-					</div>
+					<!-- </div> -->
 				</div>
-				<div class="row animate-box">
+				<div class=" animate-box">
 					
-					<div class="row text-center">
+					<div class=" text-center">
 
-						<div class="col-md-12 schedule-container">
+						<div class="col-md-12 text-center schedule-container">
 							
-							<div class="schedule-content active" data-day="Group-A">
+							<div class="schedule-content ml-0 active row" data-day="Group-A">
 								<!-- <div class="team-section-grid animate-box" style="background-image: url(images/trainer-1.jpg);"></div> -->
-								<div class="col-md-3 col-sm-6">
+								<div class="col-md-3 col-sm-6 group-sub-box">
 									<a href="#" class="active">
 										<div class="program program-schedule" >
-											<img src="images/fit-dumbell.svg" alt="Cycling">
-											<small>06AM-7AM</small>
-											<h3>Body Building</h3>
-											<span>John Doe</span>
+											
 										</div>
 									</a>
 								</div>
@@ -693,7 +692,6 @@
 								<a href="#"><i class="icon-dribbble2"></i></a>
 								<a href="#"><i class="icon-youtube"></i></a>
 							</p>
-							<p>Copyright 2016 Free Html5 <a href="#">Fitness</a>. All Rights Reserved. <br>Made with <i class="icon-heart3"></i> by <a href="http://freehtml5.co/" target="_blank">Freehtml5.co</a> / Demo Images: <a href="https://unsplash.com/" target="_blank">Unsplash</a></p>
 						</div>
 					</div>
 				</div>
