@@ -158,5 +158,77 @@
 		scheduleTab();
 	});
 
+	// Draggable
+	// Group A
+	$( function() {
+		$( "#sortableA" ).sortable({
+			revert: true
+		});
+		$( "ul, li" ).disableSelection();
+		} 
+	);
+
+	// Group B
+	$( function() {
+		$( "#sortableB" ).sortable({
+			revert: true
+		});
+		$( "ul, li" ).disableSelection();
+		} 
+	);
+
+	// Group C
+	$( function() {
+		$( "#sortableC" ).sortable({
+			revert: true
+		});
+		$( "ul, li" ).disableSelection();
+		} 
+	);
+
+	// Group D
+	$( function() {
+		$( "#sortableD" ).sortable({
+			revert: true
+		});
+		$( "ul, li" ).disableSelection();
+		} 
+	);
+
+	// Group F
+	$( function() {
+		$( "#sortableE" ).sortable({
+			revert: true
+		});
+		$( "ul, li" ).disableSelection();
+		} 
+	);
+
+	// Group G
+	$( function() {
+		$( "#sortableF" ).sortable({
+			revert: true
+		});
+		$( "ul, li" ).disableSelection();
+		} 
+	);
+
+	// Group H
+	$( function() {
+		$( "#sortableG" ).sortable({
+			revert: true
+		});
+		$( "ul, li" ).disableSelection();
+		} 
+	);
+
+	// Group H
+	$( function() {
+		$( "#sortableH" ).sortable({
+			revert: true
+		});
+		$( "ul, li" ).disableSelection();
+		} 
+	);
 
 }());

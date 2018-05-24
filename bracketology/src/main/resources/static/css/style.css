@@ -534,7 +534,8 @@ figure {
   font-size: 20px;
 }
 .program.program-schedule {
-  margin-bottom: 2em;
+  margin-bottom: 3em;
+  /* margin-bottom: 100em; */
   padding: 40px;
   background: #fff;
   -webkit-border-radius: 4px;
@@ -545,6 +546,7 @@ figure {
   -o-transition: 0.3s;
   transition: 0.3s;
 }
+
 .program.program-schedule img {
   width: 40px !important;
 }
@@ -1398,3 +1400,23 @@ figure {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+/* Draggable */
+
+ul { list-style-type: none; margin: 0; padding: 0; margin-bottom: 10px; }
+li { margin: 5px; padding: 5px; width: 150px; }
+
+.ui-state-default:hover {
+  background-color: #ad1d1d;
+  color: #fff;
+  cursor: move;
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+}
+
+.ui-state-default:active {
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}

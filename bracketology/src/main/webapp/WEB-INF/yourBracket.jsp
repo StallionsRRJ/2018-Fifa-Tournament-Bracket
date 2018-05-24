@@ -11,9 +11,7 @@
     <h1>2018 FIFA WORLD CUP</h1>
     <h2>Russia</h2>
     <div class="tournament"></div>
-
-
-    <h1>2018 FIFA World Cup</h1>
+    
     <div class="demo"></div>
     <form action="/Home/bracketData" method="POST">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

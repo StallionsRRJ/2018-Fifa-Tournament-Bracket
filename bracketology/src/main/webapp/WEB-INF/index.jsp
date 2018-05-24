@@ -208,66 +208,131 @@
 							<div class="schedule-content ml-0 active row" data-day="Group-A">
 								<!-- <div class="team-section-grid animate-box" style="background-image: url(images/trainer-1.jpg);"></div> -->
 								<div class="col-md-3 col-sm-6 group-sub-box">
-									<a href="#" class="active">
-										<div class="program program-schedule" >
-											
-										</div>
-									</a>
-								</div>
-								<div class="col-md-3 col-sm-6">
 									<div class="program program-schedule">
-										<img src="images/fit-yoga.svg" alt="">
-										<small>06AM-7AM</small>
-										<h3>Yoga Programs</h3>
-										<span>James Smith</span>
+										<!-- SORTABLE GOES HERE -->
+										<ul>
+											<li class="ui-state-highlight">Group A</li>
+										</ul>
+									
+										<ul id="sortableA">
+											<li class="ui-state-default">Russia</li>
+											<li class="ui-state-default">Saudi Arabia</li>
+											<li class="ui-state-default">Egypt</li>
+											<li class="ui-state-default">Uruguay</li>
+										</ul>
+										<!-- SORTABLE ENDS HERE -->
 									</div>
 								</div>
 								<div class="col-md-3 col-sm-6">
 									<div class="program program-schedule">
-										<img src="images/fit-cycling.svg" alt="">
-										<small>06AM-7AM</small>
-										<h3>Cycling Program</h3>
-										<span>Rita Doe</span>
+										<!-- SORTABLE GOES HERE -->
+										<ul>
+											<li class="ui-state-highlight">Group B</li>
+										</ul>
+									
+										<ul id="sortableB">
+											<li class="ui-state-default">Portugal</li>
+											<li class="ui-state-default">Spain</li>
+											<li class="ui-state-default">Morocco</li>
+											<li class="ui-state-default">Iran</li>
+										</ul>
+										<!-- SORTABLE ENDS HERE -->
 									</div>
 								</div>
 								<div class="col-md-3 col-sm-6">
 									<div class="program program-schedule">
-										<img src="images/fit-boxing.svg" alt="Cycling">
-										<small>06AM-7AM</small>
-										<h3>Boxing Fitness</h3>
-										<span>John Dose</span>
+										<!-- SORTABLE GOES HERE -->
+										<ul>
+											<li class="ui-state-highlight">Group C</li>
+										</ul>
+									
+										<ul id="sortableC">
+											<li class="ui-state-default">France</li>
+											<li class="ui-state-default">Autralia</li>
+											<li class="ui-state-default">Peru</li>
+											<li class="ui-state-default">Denmark</li>
+										</ul>
+										<!-- SORTABLE ENDS HERE -->
 									</div>
 								</div>
 								<div class="col-md-3 col-sm-6">
 									<div class="program program-schedule">
-										<img src="images/fit-boxing.svg" alt="Cycling">
-										<small>06AM-7AM</small>
-										<h3>Boxing Fitness</h3>
-										<span>John Dose</span>
+										<!-- SORTABLE GOES HERE -->
+										<ul>
+											<li class="ui-state-highlight">Group D</li>
+										</ul>
+									
+										<ul id="sortableD">
+											<li class="ui-state-default">Argentina</li>
+											<li class="ui-state-default">Iceland</li>
+											<li class="ui-state-default">Croatia</li>
+											<li class="ui-state-default">Nigeria</li>
+										</ul>
+										<!-- SORTABLE ENDS HERE -->
 									</div>
 								</div>
 								<div class="col-md-3 col-sm-6">
 									<div class="program program-schedule">
-										<img src="images/fit-boxing.svg" alt="Cycling">
-										<small>06AM-7AM</small>
-										<h3>Boxing Fitness</h3>
-										<span>John Dose</span>
+										<!-- SORTABLE GOES HERE -->
+										<ul>
+											<li class="ui-state-highlight">Group E</li>
+										</ul>
+									
+										<ul id="sortableE">
+											<li class="ui-state-default">Brazil</li>
+											<li class="ui-state-default">Saudi Arabia</li>
+											<li class="ui-state-default">Egypt</li>
+											<li class="ui-state-default">Uruguay</li>
+										</ul>
+										<!-- SORTABLE ENDS HERE -->
 									</div>
 								</div>
 								<div class="col-md-3 col-sm-6">
 									<div class="program program-schedule">
-										<img src="images/fit-boxing.svg" alt="Cycling">
-										<small>06AM-7AM</small>
-										<h3>Boxing Fitness</h3>
-										<span>John Dose</span>
+										<!-- SORTABLE GOES HERE -->
+										<ul>
+											<li class="ui-state-highlight">Group F</li>
+										</ul>
+									
+										<ul id="sortableF">
+											<li class="ui-state-default">Germany</li>
+											<li class="ui-state-default">Mexico</li>
+											<li class="ui-state-default">Sweden</li>
+											<li class="ui-state-default">Korea</li>
+										</ul>
+										<!-- SORTABLE ENDS HERE -->
 									</div>
 								</div>
 								<div class="col-md-3 col-sm-6">
 									<div class="program program-schedule">
-										<img src="images/fit-boxing.svg" alt="Cycling">
-										<small>06AM-7AM</small>
-										<h3>Boxing Fitness</h3>
-										<span>John Dose</span>
+										<!-- SORTABLE GOES HERE -->
+										<ul>
+											<li class="ui-state-highlight">Group G</li>
+										</ul>
+									
+										<ul id="sortableG">
+											<li class="ui-state-default">Belgium</li>
+											<li class="ui-state-default">Panama</li>
+											<li class="ui-state-default">Tunisia</li>
+											<li class="ui-state-default">England</li>
+										</ul>
+										<!-- SORTABLE ENDS HERE -->
+									</div>
+								</div>
+								<div class="col-md-3 col-sm-6">
+									<div class="program program-schedule">
+										<!-- SORTABLE GOES HERE -->
+										<ul>
+											<li class="ui-state-highlight">Group H</li>
+										</ul>
+									
+										<ul id="sortableH">
+											<li class="ui-state-default">Poland</li>
+											<li class="ui-state-default">Senegal</li>
+											<li class="ui-state-default">Colombia</li>
+											<li class="ui-state-default">Japan</li>
+										</ul>
+										<!-- SORTABLE ENDS HERE -->
 									</div>
 								</div>
 							</div>
@@ -720,7 +785,8 @@
 	<!-- Superfish -->
 	<script src="js/hoverIntent.js"></script>
 	<script src="js/superfish.js"></script>
-
+	<!-- draggable -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
 	<!-- Main JS (Do not remove) -->
 	<script src="js/main.js"></script>
 
