@@ -52,8 +52,7 @@
 
 <body>
     <div id="fh5co-wrapper">
-        <div id="fh5co-page">
-            <div id="fh5co-header">
+            <div id="fh5co-header md-5">
                 <header id="fh5co-header-section">
                     <!-- START #fh5co-menu-wrap -->
                     <nav class="navbar navbar-expand-sm bg-dark  navbar-dark ">
@@ -86,7 +85,9 @@
 
                 </header>
             </div>
-            <div class="container">
+
+            <div class="container mb-5">
+                <div class="mt-5">
                 <h1>2018 FIFA WORLD CUP</h1>
 
                 <div class="tournament"></div>
@@ -98,7 +99,9 @@
                     <input type="hidden" id="results" name="resultsData" value="text">
                     <input type="submit" class="btn btn-primary" value="submit">
                 </form>
+                </div>
             </div>
+
             <footer>
                 <div id="footer">
                     <div class="container">
@@ -171,7 +174,7 @@
                     </div>
                 </div>
             </footer>
-        </div>
+        
     </div>
 
     <!-- jQuery Easing -->
