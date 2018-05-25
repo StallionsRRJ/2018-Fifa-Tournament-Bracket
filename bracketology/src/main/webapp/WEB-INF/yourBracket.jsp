@@ -91,8 +91,9 @@
                 <h1>2018 FIFA WORLD CUP</h1>
 
                 <div class="tournament"></div>
-
+                <div class="usersBracket"></div>
                 <div class="demo"></div>
+
                 <form action="/Home/bracketData" method="POST">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                     <input type="hidden" id="teams" name="teamsData" value="text">
@@ -181,6 +182,7 @@
     <!--  -->
     <script type="text/javascript" src="js/bracket/jquery-1.6.2.min.js"></script>
     <script type="text/javascript" src="js/bracket/jquery.bracket.min.js"></script>
+
     <script>
         var minimalData = {
             teams: [
@@ -194,10 +196,10 @@
                 ["Poland", "Senegal"]
             ],
             results: [
-                [[1, 0], [null, null], [null, null], [null, null], [1, 0], [null, null], [null, null], [null, null]],
-                [[null, null], [null, null], [null, null], [null, null]],
-                [[null, null], [null, null]],
-                [[null, null], [null, null]]
+                [[1, 0], [1, 0], [1, 0], [0, 1], [1, 0], [0, 1], [0, 1], [1, 0]],
+                [[1, 0], [1, 0], [1, 0], [0, 1]],
+                [[1, 0], [0, 1]],
+                [[1, 0], [0, 1]]
             ]
         };
 
@@ -215,9 +217,53 @@
             })
             /* You can also inquiry the current data */
             var data = container.bracket('data')
+            document.getElementById('teams').value = JSON.stringify(data.teams)
+            document.getElementById('results').value = JSON.stringify(data.results)
             // $('.demo').text(jQuery.toJSON(data))
         })
     </script>
+        <script>
+
+            var minimalData = {
+                teams: [
+                    ["Russia", "Saudi Arabia"],
+                    ["Portugal", "Spain"],
+                    ["France", "Australia"],
+                    ["Argentina", "Iceland"],
+                    ["Brazil", "Switzerland"],
+                    ["Germany", "Mexico"],
+                    ["Belgium", "Panama"],
+                    ["Poland", "Senegal"]
+                ],
+                results: [
+                    [[1, 0], [1, 0], [1, 0], [0, 1], [1, 0], [0, 1], [0, 1], [1, 0]],
+                    [[1, 0], [1, 0], [1, 0], [0, 1]],
+                    [[1, 0], [0, 1]],
+                    [[1, 0], [0, 1]]
+                ]
+            };
+
+            function saveFn(data, userData) {
+                // console.log(JSON.stringify(data.teams))
+                // document.getElementById('teams').value = JSON.stringify(data.teams)
+                // document.getElementById('results').value = JSON.stringify(data.results)
+            }
+            $(function () {
+                var container = $('.usersBracket')
+                console.log(document.getElementById('teams').value+ "teams value")
+                minimalData.teams = JSON.parse(document.getElementById('teams').value)
+                minimalData.results = JSON.parse(document.getElementById('results').value)
+                container.bracket({
+                    init: minimalData,
+                    save: saveFn,
+                    userData: "http://myapi"
+                })
+
+                /* You can also inquiry the current data */
+                var data = container.bracket('data')
+                // $('.demo').text(jQuery.toJSON(data))
+            })
+        </script>
     <script src="js/jquery.easing.1.3.js"></script>
     <!-- Bootstrap -->
     <script src="js/bootstrap.min.js"></script>
