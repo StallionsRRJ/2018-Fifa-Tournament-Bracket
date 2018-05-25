@@ -12,7 +12,10 @@
 
 <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
 <link type="text/css" rel="stylesheet" href="/css/style.css">
-<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe"
+    crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+    crossorigin="anonymous">
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 	<link rel="shortcut icon" href="favicon.ico">
@@ -32,29 +35,34 @@
 
 
 	<!-- Modernizr JS -->
-	<script src="js/modernizr-2.6.2.min.js"></script>
+    <script src="js/modernizr-2.6.2.min.js"></script>
+
+    <script
+  src="https://code.jquery.com/jquery-2.2.4.js"
+  integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+  crossorigin="anonymous"></script>
 
 </head>
 <body>
     <nav class="navbar navbar-expand-sm bg-dark  navbar-dark ">
         <div class="container">
-            <a href="index.html" class="navbar-brand">Fifa Wall</a>
+            <a href="/home" class="navbar-brand">Fifa Wall</a>
             <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a href="/dashboard" class="nav-link">Questions</a>
+                        <a href="/wall" class="nav-link">Wall</a>
                     </li>
                     <li class="nav-item">
                         <a href="/home" class="nav-link">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="#create-head-section" class="nav-link">Create</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/logout" class="nav-link">Logout</a>
+                    <li class="nav-item ">
+                        <form id="logoutForm" method="POST" action="/logout">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                            <input type="submit" class="nav-link btn-dark" value="Logout" />
+                        </form>
                     </li>
                     <li class="nav-item">
                         <a href="/user/${cUser.id}" class="nav-link">${cUser.username}</a>
@@ -73,7 +81,7 @@
                     <div class="card-body" id="headingS1">
                         <h5 class="mb-0">
                             <div href="#collapse1" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" class="">
-                                <i class="fa fa-pencil-square-o"></i> Share an image or idea
+                                <i class="fa fa-pencil-alt"></i> Share an image or idea
                             </div>
                         </h5>
                     </div>
@@ -123,14 +131,13 @@
                         <c:if test="${post.getPicture() != null}">
                             <img class="card-img-bottom card-img-top img-fluid" src="/images/${post.getPicture()}" alt="${post.getPicture()}">
                         </c:if>
-                        <small class="text-muted ml-2"> 5 Like * <a href="#collapseComments${post.getId()}" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" class="text-muted">${post.getComments().size()} Comment </a></small>
+                        <small class="text-muted ml-2"> ${post.likes.size()}  Like * <a href="#collapseComments${post.getId()}" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" class="text-muted">${post.getComments().size()} Comment </a></small>
                         <!-- comments list -->
                         <div id="collapseComments${post.getId()}" class="collapse">
                             <c:forEach items="${post.comments}" var="comment">
                                 <div class="d-flex row-hl ml-2">
-                                    <!-- <img id="userImgComment" src="/images/${comment.getUser().getUserInfo().getProfileImg()}" alt="${cUser.getUserInfo().getProfileImg()}" class="img-fluid item-hl mt-1 rounded-circle mt-2 ml-2"> -->
                                     <div class="item-hl ml-2 mt-1">
-                                        <small class="mr-2"> <a class="text-dark" href="/profile/${comment.getUser().getId()}"> <strong>${comment.getUser().getUserInfo().getFirstName()}</strong> </a> </small><br>
+                                        <small class="mr-2"> <a class="text-dark" href="/profile/${comment.getUser().getId()}"> <strong>${comment.user.first_name}</strong> </a> </small><br>
                                         <small> <a class="text-muted" href="/profile/${comment.getUser().getId()}"> ${comment.getUser().getLast_name()} </a></small>
                                     </div>
                                     
@@ -142,15 +149,15 @@
                         </div>
                         <!--  -->
                         <div class="card-footer text-muted">
-                            <small class="mr-2"><a href="#" class="text-secondary" ><i class="fa fa-thumbs-o-up"></i> like </a></small>
-                            <small class="mr-2"> <a href="#collapseCommentForm${post.getId()}" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" class="text-secondary"> <i class="fa fa-comment-o"></i> comment </a></small>
-                            <small><a href="#" class="text-secondary"> <i class="fa fa-share"></i> share </a></small>  
+                            <small class="mr-2"><a href="/wall/likePost/${post.id}" class="text-secondary" ><i class="fa fa-thumbs-up"></i> like </a></small>
+                            <small class="mr-2"> <a href="#collapseCommentForm${post.getId()}" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" class="text-secondary"> <i class="fa fa-comment"></i> comment </a></small>
+                            <small><a href="#" class="text-secondary"> <i class="fa fa-share-square"></i> share </a></small>  
                         </div>
                         
                         <div id="collapseCommentForm${post.getId()}" class="collapse">
                             <!-- comment form -->
                             <div class=" mr-2 ml-2">
-                                <form:form action="/home/addComment/${post.getId()}" method="post" enctype="multipart/form-data" modelAttribute="newComment">    
+                                <form:form action="/comment/add/${post.getId()}" method="post" enctype="multipart/form-data" modelAttribute="newComment">    
                                     <form:input path="comment" type="text" id="name" class="form-control form-control-sm" placeholder="Add a comment..."></form:input>
                                     <div class="d-flex flex-row justify-content-between row-hl mt-2 ">
                                         <label for="fil" class="btn text-info"> <i class="fa fa-camera"></i> </label> 
@@ -176,6 +183,8 @@
 
     <script type="text/javascript" src="js/commentPreImg.js"></script>
 
+    
+
 	<script src="js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
 	<script src="js/jquery.easing.1.3.js"></script>
@@ -190,6 +199,5 @@
 	<script src="js/superfish.js"></script>
 
 	<!-- Main JS (Do not remove) -->
-	<script src="js/main.js"></script>
 	</body>
 </html>

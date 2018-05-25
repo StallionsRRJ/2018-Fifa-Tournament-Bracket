@@ -3,6 +3,7 @@ package com.rnc.bracketology.models;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -45,10 +46,10 @@ public class Post {
 	private List<Comment> comments;
 	
 //	many to many with User
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
         name = "likes", 
-        joinColumns = @JoinColumn(name = "postid"), 
+        joinColumns = @JoinColumn(name = "post_id"), 
         inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     private List<User> likes;

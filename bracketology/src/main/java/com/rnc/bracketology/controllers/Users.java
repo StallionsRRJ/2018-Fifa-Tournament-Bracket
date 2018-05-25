@@ -48,12 +48,9 @@ public class Users {
     		return "index";
     	}
     	ArrayList<User> existing = userService.all();
-    	System.out.println(existing);
-    	System.out.println(existing.size());
     		if (existing.size() == 0) {
     			userService.saveWithUserRole(user);
-    			userService.addAdminRole(user);
-    			
+    			userService.addAdminRole(user);	
     		}
     		else {
     			userService.saveWithUserRole(user);
@@ -65,7 +62,6 @@ public class Users {
     public String adminPage(Principal principal, Model model) {
         String username = principal.getName();
         User activeUser = (User) ((Authentication) principal).getPrincipal();
-        System.out.println(activeUser.getFirst_name()+"***********");
         model.addAttribute("currentUser", userService.findByUsername(username));
         return "adminPage";
     }

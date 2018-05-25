@@ -4,16 +4,13 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.security.Principal;
-import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,33 +18,28 @@ import org.springframework.web.multipart.MultipartFile;
 import com.rnc.bracketology.models.Comment;
 import com.rnc.bracketology.models.Post;
 import com.rnc.bracketology.models.User;
+import com.rnc.bracketology.services.CommentService;
 import com.rnc.bracketology.services.PostService;
 import com.rnc.bracketology.services.UserService;
 
 @Controller
-@RequestMapping("/wall")
-public class PostController {
-	
+@RequestMapping("/comment")
+public class CommentController {
+
 	@Autowired
+	private CommentService _cS;
+	
+	@Autowired 
 	private PostService _pS;
 	
 	@Autowired
 	private UserService _uS;
 	
-	@RequestMapping("")
-	public String wall(@ModelAttribute("newPost") Post post,Model model,Principal principal,@ModelAttribute("newComment") Comment comment) {
+	@RequestMapping("/add/{id}")
+	public String addComment(@Valid @ModelAttribute("newComment") Comment comment,@PathVariable("id") Long id,Principal principal,@RequestParam("file2") MultipartFile file) {
 		User user = _uS.findByUsername(principal.getName());
-		user.setPassword(null);
-		model.addAttribute("currentUser", user);
-		model.addAttribute("posts", _pS.all());
-		return "wall";
-	}
-	
-	@PostMapping("/post")
-	public String createPost(@Valid @ModelAttribute("newPost") Post post,@RequestParam("file") MultipartFile file,Principal principal){
-		User user = _uS.findByUsername(principal.getName());
-		
-		if(file.isEmpty() && post.getMessage().equals("")) {
+		Post post = _pS.findOne(id);
+		if(file.isEmpty() && comment.getComment().equals("")) {
 			return "redirect:/wall";
 		}else if(!file.isEmpty()) {
 			try {
@@ -64,39 +56,23 @@ public class PostController {
 				stream.write(bytes);
 				stream.close();
 //				adding it to my datebase
-				post.setUser(user);
-				post.setPicture(file.getOriginalFilename());
-				_pS.create(post);
+				comment.setUser(user);
+				comment.setPost(post);
+				comment.setPicture(file.getOriginalFilename());
+				Comment newComment = comment;
+				_cS.create(comment);
 				return "redirect:/wall";
 			}catch (Exception e) {
 				return "redirect:/wall";
 			}
-		}else if(file.isEmpty() && !post.getMessage().equals("")) {
-			post.setUser(user);
-			_pS.create(post);
+		}else if(file.isEmpty() && !comment.getComment().equals("")) {
+			comment.setUser(user);
+			comment.setPost(post);
+			Comment newComment = comment;
+			_cS.create(newComment);
 			return "redirect:/wall";
 		}
 		return "redirect:/wall";
 	}
 	
-	@RequestMapping("likePost/{id}")
-	public String likePost(@PathVariable("id") Long id,Principal principal) {
-		User user = _uS.findByUsername(principal.getName());
-		Post post = _pS.findOne(id);
-		if(!post.getLikes().contains(user)) {
-//			update Post 
-			List<User> userLikes = post.getLikes();
-			userLikes.add(user);
-			post.setLikes(userLikes);
-			_pS.update(post);
-
-		}
-		return "redirect:/wall";
-	}
-	
-	
-	
-	
-	
-
 }

@@ -64,4 +64,8 @@ public class UserService {
     	return (ArrayList<User>) userRepo.findAll();
     }
     
+    public User update(User user) {
+    		return userRepo.save(user);
+    }
+    
 }

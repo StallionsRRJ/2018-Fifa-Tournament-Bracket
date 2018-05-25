@@ -49,7 +49,7 @@
 </head>
 <body>
 <div id="fh5co-wrapper">
-		<div id="fh5co-page">
+	<div id="fh5co-page">
 		<div id="fh5co-header">
 			<header id="fh5co-header-section">
 				<div class="container">
@@ -70,107 +70,91 @@
 				</div>
 			</header>		
 		</div>
-
-<!-- Register MODAL -->
-<div class="modal" id="loginModal">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="row">
-				<div class="col">
-					<div class="card">
-						<div class="card-header">
-							<h2 class="text-secondary">  Login</h2>
-						</div>
-						<div>
-							<c:if test="${errorMessage != null}">
-								<c:out value="${errorMessage}"></c:out>
-							</c:if>
-						</div>
-						<div class="card-body">
-							<form method="POST" action="/login">
-								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-								<div class="form-group">
-									<input class="form-control" placeholder="Email" type="text" name="username">
+		<!-- Register MODAL -->
+		<div class="modal" id="loginModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="row">
+						<div class="col">
+							<div class="card">
+								<div class="card-header">
+									<h2 class="text-secondary">  Login</h2>
 								</div>
-								<div class="form-group">
-									<input class="form-control" type="password" placeholder="Password" name="password">
+								<div>
+									<c:if test="${errorMessage != null}">
+										<c:out value="${errorMessage}"></c:out>
+									</c:if>
 								</div>
-								<p>Need to register?  <a class="text-dark" data-dismiss="modal" data-toggle="modal" data-target="#registerModal">Register</a> </p>
-								<div class="card-footer">
-									<input class="btn btn-primary mr-2" type="submit" value="Login">
-									<button class="btn btn-secondary" data-dismiss="modal">Close</button>
+								<div class="card-body">
+									<form method="POST" action="/login">
+										<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+										<div class="form-group">
+											<input class="form-control" placeholder="Email" type="text" name="username">
+										</div>
+										<div class="form-group">
+											<input class="form-control" type="password" placeholder="Password" name="password">
+										</div>
+										<p>Need to register?  <a class="text-dark" data-dismiss="modal" data-toggle="modal" data-target="#registerModal">Register</a> </p>
+										<div class="card-footer">
+											<input class="btn btn-primary mr-2" type="submit" value="Login">
+											<button class="btn btn-secondary" data-dismiss="modal">Close</button>
+										</div>
+									</form>
 								</div>
-							</form>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</div>
 
 <!-- LOGIN MODAL -->
-<div class="modal" id="registerModal">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="row">
-				<div class="col">
-					<div class="card">
-						<div class="card-header">
-							<h2 class="text-secondary"> Register</h2>
-						</div>
-						<div>
-							
-						</div>
-						<div class="card-body">
-							<form:form method="POST"  action="/registration" modelAttribute="user">
-								<div class="form-group">
-									<form:input class="form-control" placeholder="Email" type="text" path="username" name="username"/>
+		<div class="modal" id="registerModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="row">
+						<div class="col">
+							<div class="card">
+								<div class="card-header">
+									<h2 class="text-secondary"> Register</h2>
 								</div>
-								<div class="form-group">
-									<form:input class="form-control" placeholder="First Name" type="text" path="first_name" name="first_name"/>
+								<div>
+									
 								</div>
-								<div class="form-group">
-									<form:input class="form-control" placeholder="Last Name" type="text" path="last_name" name="last_name"/>
+								<div class="card-body">
+									<form:form method="POST"  action="/registration" modelAttribute="user">
+										<div class="form-group">
+											<form:input class="form-control" placeholder="Email" type="text" path="username" name="username"/>
+										</div>
+										<div class="form-group">
+											<form:input class="form-control" placeholder="First Name" type="text" path="first_name" name="first_name"/>
+										</div>
+										<div class="form-group">
+											<form:input class="form-control" placeholder="Last Name" type="text" path="last_name" name="last_name"/>
+										</div>
+										<div class="form-group">
+											<form:input class="form-control" type="date" path="dob" name="dob"/>
+										</div>
+										<div class="form-group">
+											<form:input class="form-control" type="password" placeholder="Password" path="password" name="password"/>
+										</div>
+										<div class="form-group">
+											<form:input class="form-control" placeholder="Password Confirmation" type="password" path="passwordConfirmation" name="passwordConfirmation"/>
+										</div>
+										
+										<p>Already have an account?  <a class="text-dark" data-toggle="modal" data-dismiss="modal" data-target="#loginModal">Login</a> </p>
+										<div class="card-footer">
+											<input class="btn btn-primary mr-2" type="submit" value="Register">
+											<button class="btn btn-secondary" data-dismiss="modal">Close</button>
+										</div>
+									</form:form>
 								</div>
-								<div class="form-group">
-									<form:input class="form-control" type="date" path="dob" name="dob"/>
-								</div>
-								<div class="form-group">
-									<form:input class="form-control" type="password" placeholder="Password" path="password" name="password"/>
-								</div>
-								<div class="form-group">
-									<form:input class="form-control" placeholder="Password Confirmation" type="password" path="passwordConfirmation" name="passwordConfirmation"/>
-								</div>
-								
-								<p>Already have an account?  <a class="text-dark" data-toggle="modal" data-dismiss="modal" data-target="#loginModal">Login</a> </p>
-								<div class="card-footer">
-									<input class="btn btn-primary mr-2" type="submit" value="Register">
-									<button class="btn btn-secondary" data-dismiss="modal">Close</button>
-								</div>
-							</form:form>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 		<!-- end:fh5co-header -->
 		<div class="fh5co-hero">
 			<div class="fh5co-overlay"></div>
@@ -200,11 +184,8 @@
 					<!-- </div> -->
 				</div>
 				<div class=" animate-box">
-					
 					<div class=" text-center">
-
 						<div class="col-md-12 text-center schedule-container">
-							
 							<div class="schedule-content ml-0 active row" data-day="Group-A">
 								<!-- <div class="team-section-grid animate-box" style="background-image: url(images/trainer-1.jpg);"></div> -->
 								<div class="col-md-3 col-sm-6 group-sub-box">
@@ -213,7 +194,6 @@
 										<ul>
 											<li class="ui-state-highlight">Group A</li>
 										</ul>
-									
 										<ul id="sortableA">
 											<li class="ui-state-default">Russia</li>
 											<li class="ui-state-default">Saudi Arabia</li>
@@ -762,12 +742,9 @@
 				</div>
 			</div>
 		</footer>
-	
-
 	</div>
 	<!-- END fh5co-page -->
-
-	</div>
+</div>
 	<!-- END fh5co-wrapper -->
 
 	<!-- jQuery -->
